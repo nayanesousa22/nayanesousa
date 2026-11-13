@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nayane — Site feito para vender</title>
+  <meta name="description" content="Diagnóstico, copy, design e site no ar, feitos para vender, não só para ficar bonito.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/work/fio-de-luz.jpg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="scene" id="scene">
+
+  <!-- ══════════════════════════════════════════
+       DOBRA 1 — HERO (fixa enquanto a dobra 2 sobe)
+  ═══════════════════════════════════════════ -->
+  <section class="fold1" id="fold1" aria-label="Apresentação">
+
+    <!-- Vídeo de fundo: acompanha o scroll (zoom + velocidade) -->
+    <div class="space" id="space" aria-hidden="true">
+      <video id="spaceVideo" class="space__video" autoplay muted loop playsinline preload="auto">
+        <source src="assets/hero-bg.mov">
+      </video>
+      <!-- remove o astronauta do vídeo quando o astronauta em PNG assume e começa a cair -->
+      <div class="space__hole" id="spaceHole"></div>
+    </div>
+    <div class="fold1__dim" id="fold1Dim" aria-hidden="true"></div>
+
+    <!-- Luzes amarelas nas pontas -->
+    <div class="glow glow--tr" aria-hidden="true"></div>
+    <div class="glow glow--bl" aria-hidden="true"></div>
+    <div class="glow glow--tl" aria-hidden="true"></div>
+
+    <!-- Status online no topo -->
+    <header class="live-status" aria-label="Status">
+      <span class="live-status__dot" aria-hidden="true"></span>
+      <span class="live-status__text">Online agora</span>
+    </header>
+
+    <div class="fold1__inner" id="fold1Inner">
+
+      <!-- Copy à esquerda -->
+      <div class="hero-copy">
+        <h1 class="hero-copy__title">
+          <span class="hero-title--desk">
+            <span class="u-nowrap">Seu trabalho merece</span><br>
+            <span class="u-nowrap">um site que mostre</span><br>
+            <span class="grad-night u-nowrap">o seu valor.</span>
+          </span>
+          <span class="hero-title--mob">
+            <span class="u-nowrap">Seu trabalho merece um site</span><br>
+            <span class="u-nowrap">que mostre <span class="grad-night">o seu valor.</span></span>
+          </span>
+        </h1>
+        <p class="hero-copy__lead">
+          Diagnóstico, copy, design e site no ar, feitos para vender,<br class="desk-br">
+          não só para ficar bonito.
+        </p>
+      </div>
+
+      <!-- Carrossel contínuo em looping à direita -->
+      <div class="showcase" id="showcase" aria-label="Projetos em destaque">
+        <div class="marquee-wrap">
+          <div class="marquee-track" id="marqueeTrack">
+            <!-- Set 1 -->
+            <a class="c-card" href="https://www.behance.net/gallery/258046395/Pagina-de-Vendas-Fio-de-Luz" target="_blank" rel="noopener noreferrer">
+              <div class="c-card__frame">
+                <img src="assets/work/fio-de-luz.jpg" alt="Fio de Luz — Página de Vendas" width="819" height="1024" loading="eager">
+              </div>
+              <div class="c-box">
+                <span class="c-box__name">Fio de Luz</span>
+                <span class="c-box__type">Página de Vendas</span>
+              </div>
+            </a>
+
+            <a class="c-card" href="https://www.behance.net/gallery/257832721/Pagina-de-Vendas-Vita-Odonto" target="_blank" rel="noopener noreferrer">
+              <div class="c-card__frame">
+                <img src="assets/work/vita-odonto.png" alt="Vita Odonto — Página de Vendas" width="1080" height="1350" loading="lazy">
+              </div>
+              <div class="c-box">
+                <span class="c-box__name">Vita Odonto</span>
+                <span class="c-box__type">Página de Vendas</span>
+              </div>
+            </a>
+
+            <a class="c-card" href="https://www.behance.net/gallery/257836967/Pagina-de-Vendas-Casa-Nutricao" target="_blank" rel="noopener noreferrer">
+              <div class="c-card__frame">
+                <img src="assets/work/casa-nutricao.png" alt="Casa Nutrição — Página de Vendas" width="1080" height="1350" loading="lazy">
+              </div>
+              <div class="c-box">
+                <span class="c-box__name">Casa Nutrição</span>
+                <span class="c-box__type">Página de Vendas</span>
+              </div>
+            </a>
+
+            <a class="c-card" href="https://www.behance.net/gallery/258310247/Sistema-de-Agendamento-OLD-FOX-Barbearia" target="_blank" rel="noopener noreferrer">
+              <div class="c-card__frame">
+                <img src="assets/work/old-fox-barbearia.png" alt="Old Fox Barbearia — Sistema de Agendamento" width="1080" height="1350" loading="lazy">
+              </div>
+              <div class="c-box">
+                <span class="c-box__name">Old Fox Barbearia</span>
+                <span class="c-box__type">Sistema de Agendamento</span>
+              </div>
+            </a>
+
+            <!-- Set 2 (duplicação para loop infinito contínuo) -->
+            <a class="c-card" href="https://www.behance.net/gallery/258046395/Pagina-de-Vendas-Fio-de-Luz" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1">
+              <div class="c-card__frame">
+                <img src="assets/work/fio-de-luz.jpg" alt="" width="819" height="1024" loading="lazy">
+              </div>
+              <div class="c-box">
+                <span class="c-box__name">Fio de Luz</span>
+                <span class="c-box__type">Página de Vendas</span>
+              </div>
+            </a>
+
+            <a class="c-card" href="https://www.behance.net/gallery/257832721/Pagina-de-Vendas-Vita-Odonto" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1">
+              <div class="c-card__frame">
+                <img src="assets/work/vita-odonto.png" alt="" width="1080" height="1350" loading="lazy">
+              </div>
+              <div class="c-box">
+                <span class="c-box__name">Vita Odonto</span>
+                <span class="c-box__type">Página de Vendas</span>
+              </div>
+            </a>
+
+            <a class="c-card" href="https://www.behance.net/gallery/257836967/Pagina-de-Vendas-Casa-Nutricao" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1">
+              <div class="c-card__frame">
+                <img src="assets/work/casa-nutricao.png" alt="" width="1080" height="1350" loading="lazy">
+              </div>
+              <div class="c-box">
+                <span class="c-box__name">Casa Nutrição</span>
+                <span class="c-box__type">Página de Vendas</span>
+              </div>
+            </a>
+
+            <a class="c-card" href="https://www.behance.net/gallery/258310247/Sistema-de-Agendamento-OLD-FOX-Barbearia" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1">
+              <div class="c-card__frame">
+                <img src="assets/work/old-fox-barbearia.png" alt="" width="1080" height="1350" loading="lazy">
+              </div>
+              <div class="c-box">
+                <span class="c-box__name">Old Fox Barbearia</span>
+                <span class="c-box__type">Sistema de Agendamento</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <a class="btn-gradient btn-wide" href="https://www.behance.net/nayanefreitas1" target="_blank" rel="noopener noreferrer">
+          Ver portfólio completo
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       DOBRA 2 — PROCESSO (sobe cobrindo a dobra 1)
+  ═══════════════════════════════════════════ -->
+  <section class="fold2" id="fold2" aria-label="O que você recebe e como funciona">
+
+    <!-- Faixas de ferramentas do Photoshop se cruzando na transição -->
+    <div class="ps-crossing" aria-hidden="true">
+      <div class="ps-ribbon ps-ribbon--1"></div>
+      <div class="ps-ribbon ps-ribbon--2"></div>
+    </div>
+
+    <div class="glow glow--f2-tr" aria-hidden="true"></div>
+    <div class="glow glow--f2-bl" aria-hidden="true"></div>
+
+    <div class="fold2__grid">
+
+      <!-- Conteúdo à esquerda -->
+      <div class="fold2__content">
+        <h2 class="fold2__title reveal">
+          Do diagnóstico ao site no ar, <span class="grad-day">sem você precisar entender de marketing.</span>
+        </h2>
+
+        <div class="sub-label reveal">O que você recebe</div>
+        <div class="squares">
+          <article class="sq sq--cream reveal" style="--d:0ms">
+            <div class="sq__top"><span class="sq__idx">01</span><span class="sq__mark" aria-hidden="true"></span></div>
+            <div class="sq__body">
+              <h3 class="sq__title">Estratégia e copy</h3>
+              <p class="sq__text">O texto que explica o seu valor e convida a pessoa a agir.</p>
+            </div>
+          </article>
+          <article class="sq sq--charcoal reveal" style="--d:90ms">
+            <div class="sq__top"><span class="sq__idx">02</span><span class="sq__mark" aria-hidden="true"></span></div>
+            <div class="sq__body">
+              <h3 class="sq__title"><span class="u-nowrap">Design e estrutura</span><br>da página</h3>
+              <p class="sq__text">Visual alinhado à sua marca e organizado para conversão.</p>
+            </div>
+          </article>
+          <article class="sq sq--yellow reveal" style="--d:180ms">
+            <div class="sq__top"><span class="sq__idx">03</span><span class="sq__mark" aria-hidden="true"></span></div>
+            <div class="sq__body">
+              <h3 class="sq__title">Site no ar</h3>
+              <p class="sq__text">Publicado, funcionando e pronto para receber contatos.</p>
+            </div>
+          </article>
+          <article class="sq sq--frame reveal" style="--d:270ms">
+            <div class="sq__top"><span class="sq__idx">04</span><span class="sq__mark" aria-hidden="true"></span></div>
+            <div class="sq__body">
+              <h3 class="sq__title">Sistemas sob medida</h3>
+              <p class="sq__text">Agendamento online e automações quando o seu negócio precisar.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="sub-label reveal">Como funciona</div>
+        <ol class="steps">
+          <li class="step reveal" style="--d:0ms">
+            <span class="step__num">1</span>
+            <div><h3 class="step__title">Conversamos.</h3><p class="step__text">Você conta o seu negócio, o seu cliente e o que hoje não funciona.</p></div>
+          </li>
+          <li class="step reveal" style="--d:80ms">
+            <span class="step__num">2</span>
+            <div><h3 class="step__title">Diagnóstico gratuito.</h3><p class="step__text">Mostro o que está travando as vendas, sem compromisso.</p></div>
+          </li>
+          <li class="step reveal" style="--d:160ms">
+            <span class="step__num">3</span>
+            <div><h3 class="step__title">Copy e design.</h3><p class="step__text">Você aprova cada etapa antes de seguir.</p></div>
+          </li>
+          <li class="step reveal" style="--d:240ms">
+            <span class="step__num">4</span>
+            <div><h3 class="step__title">Site no ar.</h3><p class="step__text">Publicado, testado no celular e pronto para vender.</p></div>
+          </li>
+        </ol>
+      </div>
+
+      <!-- Palco do astronauta (fica fixo enquanto o conteúdo rola) -->
+      <aside class="fold2__aside" id="astroSlot" aria-hidden="true">
+        <div class="aside__glow"></div>
+        <div class="aside__frame aside__frame--a"></div>
+        <div class="aside__frame aside__frame--b"></div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       DOBRA 3 — SOBRE (Nayane)
+  ═══════════════════════════════════════════ -->
+  <section class="fold3" id="sobre" aria-label="Sobre Nayane">
+    <div class="glow glow--f3-tr" aria-hidden="true"></div>
+    <div class="glow glow--f3-bl" aria-hidden="true"></div>
+
+    <div class="fold3__grid">
+      <!-- Texto à esquerda -->
+      <div class="fold3__copy">
+        <div class="sub-label reveal">Sobre mim</div>
+
+        <p class="fold3__p reveal">
+          Olá, me chamo <strong>Nayane</strong> e há mais de <br class="mob-br"><span class="u-nowrap">5 anos</span> trabalho com design gráfico. Passei por duas grandes agências de marketing, criando posts para redes sociais e peças de todo tipo. Foi ali que percebi uma coisa: <span class="fold3__highlight">a pessoa até chega pelo post, mas decide no site.</span>
+        </p>
+
+        <p class="fold3__p reveal">
+          Por isso me especializei em criação <br class="mob-br"><span class="u-nowrap">de sites.</span> O que mais me motiva é unir design e estratégia para que quem visita entenda, em poucos segundos, o valor do seu trabalho e sinta vontade de dar o primeiro passo.
+        </p>
+
+        <div class="fold3__card reveal">
+          <div class="fold3__card-mark" aria-hidden="true"></div>
+          <p class="fold3__card-text">
+            Site bonito, sozinho, não vende. O que vende é a <strong>mensagem certa</strong>, para a <strong>pessoa certa</strong>, no <strong>momento certo</strong>. É isso que eu faço.
+          </p>
+        </div>
+
+        <div class="fold3__badges reveal">
+          <span class="badge"><span class="badge__dot"></span>+5 anos de experiência</span>
+          <span class="badge"><span class="badge__dot"></span>Estratégia &amp; Copy</span>
+          <span class="badge"><span class="badge__dot"></span>Design focado em conversão</span>
+        </div>
+      </div>
+
+      <!-- Foto à direita -->
+      <div class="fold3__visual reveal">
+        <div class="fold3__photo-wrap">
+          <div class="fold3__photo-frame">
+            <img class="fold3__photo" src="assets/nayane.jpg" alt="Nayane — Designer Gráfica e de Sites" width="800" height="1067" loading="lazy">
+          </div>
+          <div class="fold3__photo-decor fold3__photo-decor--tl" aria-hidden="true"></div>
+          <div class="fold3__photo-decor fold3__photo-decor--br" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       DOBRA 4 — PROJETOS NO AR (Vídeo Astronauta + Carrossel Looping)
+  ═══════════════════════════════════════════ -->
+  <section class="fold4" id="portfolio" aria-label="Projetos no ar">
+    <!-- Fundo de vídeo com astronauta no centro inferior -->
+    <div class="fold4__video-wrap" aria-hidden="true">
+      <video class="fold4__video" id="fold4Video" autoplay muted loop playsinline webkit-playsinline preload="auto">
+        <source src="assets/fold4-bg.mp4" type="video/mp4">
+        <source src="assets/fold4-bg.mov" type="video/quicktime">
+      </video>
+      <div class="fold4__dim"></div>
+    </div>
+
+    <!-- Luzes de ponta -->
+    <div class="glow glow--f4-tr" aria-hidden="true"></div>
+    <div class="glow glow--f4-bl" aria-hidden="true"></div>
+
+    <div class="fold4__content">
+      <!-- Título da dobra 4 -->
+      <div class="fold4__header reveal">
+        <h2 class="fold4__title">
+          Projetos que já estão no ar
+        </h2>
+      </div>
+
+      <!-- Carrossel contínuo passando acima do astronauta -->
+      <div class="fold4__marquee-wrap" aria-label="Carrossel de projetos">
+        <div class="fold4__track">
+          <!-- Set 1 -->
+          <a class="p-card" href="https://www.behance.net/gallery/258046395/Pagina-de-Vendas-Fio-de-Luz" target="_blank" rel="noopener noreferrer">
+            <div class="p-card__frame">
+              <img src="assets/projects/fio-de-luz-full.jpg" alt="Fio de Luz — Vela Aromática &amp; Ritual" width="368" height="1024" loading="eager">
+            </div>
+            <div class="p-card__info">
+              <span class="p-card__name">Fio de Luz</span>
+              <span class="p-card__tag">Página de Vendas</span>
+            </div>
+          </a>
+
+          <a class="p-card" href="https://www.behance.net/gallery/258310247/Sistema-de-Agendamento-OLD-FOX-Barbearia" target="_blank" rel="noopener noreferrer">
+            <div class="p-card__frame">
+              <img src="assets/projects/old-fox-full.jpg" alt="Old Fox Barbearia — Sistema de Agendamento" width="388" height="1024" loading="lazy">
+            </div>
+            <div class="p-card__info">
+              <span class="p-card__name">Old Fox Barbearia</span>
+              <span class="p-card__tag">Sistema de Agendamento</span>
+            </div>
+          </a>
+
+          <a class="p-card" href="https://www.behance.net/gallery/257832721/Pagina-de-Vendas-Vita-Odonto" target="_blank" rel="noopener noreferrer">
+            <div class="p-card__frame">
+              <img src="assets/projects/vita-odonto-full.jpg" alt="Vita Odonto — Odontologia Estética" width="351" height="1024" loading="lazy">
+            </div>
+            <div class="p-card__info">
+              <span class="p-card__name">Vita Odonto</span>
+              <span class="p-card__tag">Página de Vendas</span>
+            </div>
+          </a>
+
+          <a class="p-card" href="https://www.behance.net/gallery/257836967/Pagina-de-Vendas-Casa-Nutricao" target="_blank" rel="noopener noreferrer">
+            <div class="p-card__frame">
+              <img src="assets/projects/casa-nutricao-full.jpg" alt="Casa Nutrição — Nutrição Real" width="364" height="1024" loading="lazy">
+            </div>
+            <div class="p-card__info">
+              <span class="p-card__name">Casa Nutrição</span>
+              <span class="p-card__tag">Página de Vendas</span>
+            </div>
+          </a>
+
+          <!-- Set 2 (duplicação para loop contínuo perfeito) -->
+          <a class="p-card" href="https://www.behance.net/gallery/258046395/Pagina-de-Vendas-Fio-de-Luz" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1">
+            <div class="p-card__frame">
+              <img src="assets/projects/fio-de-luz-full.jpg" alt="" width="368" height="1024" loading="lazy">
+            </div>
+            <div class="p-card__info">
+              <span class="p-card__name">Fio de Luz</span>
+              <span class="p-card__tag">Página de Vendas</span>
+            </div>
+          </a>
+
+          <a class="p-card" href="https://www.behance.net/gallery/258310247/Sistema-de-Agendamento-OLD-FOX-Barbearia" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1">
+            <div class="p-card__frame">
+              <img src="assets/projects/old-fox-full.jpg" alt="" width="388" height="1024" loading="lazy">
+            </div>
+            <div class="p-card__info">
+              <span class="p-card__name">Old Fox Barbearia</span>
+              <span class="p-card__tag">Sistema de Agendamento</span>
+            </div>
+          </a>
+
+          <a class="p-card" href="https://www.behance.net/gallery/257832721/Pagina-de-Vendas-Vita-Odonto" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1">
+            <div class="p-card__frame">
+              <img src="assets/projects/vita-odonto-full.jpg" alt="" width="351" height="1024" loading="lazy">
+            </div>
+            <div class="p-card__info">
+              <span class="p-card__name">Vita Odonto</span>
+              <span class="p-card__tag">Página de Vendas</span>
+            </div>
+          </a>
+
+          <a class="p-card" href="https://www.behance.net/gallery/257836967/Pagina-de-Vendas-Casa-Nutricao" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1">
+            <div class="p-card__frame">
+              <img src="assets/projects/casa-nutricao-full.jpg" alt="" width="364" height="1024" loading="lazy">
+            </div>
+            <div class="p-card__info">
+              <span class="p-card__name">Casa Nutrição</span>
+              <span class="p-card__tag">Página de Vendas</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       DOBRA 5 — CONTATO & ORÇAMENTO
+  ════════════════════════════════════════════════ -->
+  <section class="fold5" id="contato" aria-label="Pedir orçamento">
+    <div class="fold5__bg-wrap" aria-hidden="true">
+      <img class="fold5__bg" src="assets/fold5-bg.jpg" alt="" width="1024" height="576" loading="lazy" draggable="false">
+      <div class="fold5__dim"></div>
+    </div>
+
+    <div class="glow glow--f5-tl" aria-hidden="true"></div>
+    <div class="glow glow--f5-br" aria-hidden="true"></div>
+
+    <div class="fold5__inner">
+      <div class="fold5__content reveal">
+        <h2 class="fold5__title">
+          <span class="f5-line">Me conte o seu negócio</span><br>
+          <span class="f5-line">e o que você quer</span><br>
+          <span class="f5-line">que <span class="text-gold">o site faça por você.</span></span>
+        </h2>
+
+        <p class="fold5__sub">
+          Eu respondo com um orçamento claro,<br>sem compromisso.
+        </p>
+
+        <div class="fold5__actions">
+          <a class="btn-gradient fold5__cta" href="https://wa.me/5585987324544?text=Ol%C3%A1%20Nayane,%20gostaria%20de%20pedir%20um%20or%C3%A7amento%20para%20o%20meu%20site." target="_blank" rel="noopener noreferrer">
+            <span>Pedir Orçamento</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       RODAPÉ
+  ════════════════════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="site-footer__inner">
+      <div class="site-footer__brand">
+        <span class="site-footer__name">Nayane S.</span>
+        <span class="site-footer__sep" aria-hidden="true">|</span>
+        <span class="site-footer__role">Web Designer</span>
+      </div>
+      <p class="site-footer__copy">© 2026 Nayane S. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</div>
+
+<!-- Modal de Briefing / Orçamento -->
+<div class="quote-modal" id="quoteModal" role="dialog" aria-modal="true" aria-labelledby="quoteModalTitle" hidden>
+  <div class="quote-modal__backdrop" data-close-modal></div>
+  <div class="quote-modal__card">
+    <button type="button" class="quote-modal__close" id="closeQuoteModal" aria-label="Fechar">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <h3 class="quote-modal__title" id="quoteModalTitle">Me conte sobre o <span class="text-gold">seu projeto</span></h3>
+    <p class="quote-modal__desc">Preencha em poucos segundos para copiar sua mensagem e enviar no Instagram sem compromisso.</p>
+    <form class="quote-form" id="quoteForm">
+      <label class="quote-field">
+        <span>Seu nome</span>
+        <input type="text" id="qName" placeholder="Ex.: Maria Silva" required>
+      </label>
+      <label class="quote-field">
+        <span>Seu negócio / segmento</span>
+        <input type="text" id="qBiz" placeholder="Ex.: Clínica odontológica, loja de velas, barbearia..." required>
+      </label>
+      <label class="quote-field">
+        <span>O que você quer que o site faça por você?</span>
+        <textarea id="qGoal" rows="3" placeholder="Ex.: Atrair clientes pelo WhatsApp, vender um produto, agendar horários..." required></textarea>
+      </label>
+      <div class="quote-form__actions">
+        <button type="submit" class="btn-gradient btn-wide">
+          <span id="qSubmitLabel">Copiar mensagem &amp; abrir Instagram</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+      <p class="quote-form__feedback" id="qFeedback" aria-live="polite"></p>
+    </form>
+  </div>
+</div>
+
+<!-- Astronauta: cai da dobra 1 para a direita da dobra 2 (posicionado pelo scroll) -->
+<div class="astro" id="astro" aria-hidden="true">
+  <div class="astro__float">
+    <img class="astro__img" src="assets/astronaut.png" alt="" width="1024" height="587" draggable="false">
+    <img class="astro__hand astro__hand--a" src="assets/astronaut.png" alt="" draggable="false">
+    <img class="astro__hand astro__hand--b" src="assets/astronaut.png" alt="" draggable="false">
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
