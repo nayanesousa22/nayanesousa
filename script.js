@@ -202,6 +202,89 @@
     window.addEventListener('touchstart', playFold4, { passive: true, once: true });
   }
 
+  /* ───────────── NOVO: DECK DE DESEMPENHO (PASSAR FOLHA PRA CIMA) ───────────── */
+  const sheetDeck = document.getElementById('sheetDeck');
+  if (sheetDeck) {
+    const cards = Array.from(sheetDeck.querySelectorAll('.sheet-card'));
+    const dots = Array.from(sheetDeck.querySelectorAll('.sheet-dot'));
+    const nextBtn = document.getElementById('sheetNextBtn');
+    const stage = document.getElementById('sheetStage');
+    let current = 0;
+    let isFlipping = false;
+    let autoTimer = null;
+
+    function applyPositions() {
+      cards.forEach((card, i) => {
+        card.classList.remove('is-flipping-up');
+        const pos = (i - current + cards.length) % cards.length;
+        card.setAttribute('data-pos', pos);
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('is-active', i === current);
+      });
+    }
+
+    function flipNext() {
+      if (isFlipping || cards.length < 2) return;
+      isFlipping = true;
+
+      const topCard = cards[current];
+      topCard.classList.add('is-flipping-up');
+
+      current = (current + 1) % cards.length;
+
+      // As demais folhas avançam suavemente
+      cards.forEach((card, i) => {
+        if (card === topCard) return;
+        const pos = (i - current + cards.length) % cards.length;
+        card.setAttribute('data-pos', pos);
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('is-active', i === current);
+      });
+
+      setTimeout(() => {
+        topCard.classList.remove('is-flipping-up');
+        topCard.setAttribute('data-pos', cards.length - 1);
+        isFlipping = false;
+      }, 520);
+    }
+
+    applyPositions();
+
+    if (nextBtn) nextBtn.addEventListener('click', flipNext);
+    if (stage) stage.addEventListener('click', flipNext);
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        if (isFlipping || idx === current) return;
+        flipNext();
+      });
+    });
+
+    let touchStartY = 0;
+    if (stage) {
+      stage.addEventListener('touchstart', e => {
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+      stage.addEventListener('touchend', e => {
+        const diff = touchStartY - e.changedTouches[0].clientY;
+        if (diff > 35) flipNext();
+      }, { passive: true });
+    }
+
+    const startAuto = () => {
+      if (!autoTimer) autoTimer = setInterval(flipNext, 4600);
+    };
+    const stopAuto = () => {
+      if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+    };
+    startAuto();
+    sheetDeck.addEventListener('mouseenter', stopAuto);
+    sheetDeck.addEventListener('mouseleave', startAuto);
+    sheetDeck.addEventListener('touchstart', stopAuto, { passive: true });
+  }
+
   /* ───────────── 4) REVELAÇÕES DA PÁGINA ───────────── */
   const io = new IntersectionObserver(entries => {
     entries.forEach(en => {
