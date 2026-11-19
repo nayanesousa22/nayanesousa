@@ -202,6 +202,172 @@
     window.addEventListener('touchstart', playFold4, { passive: true, once: true });
   }
 
+  /* ───────────── CARROSSEIS INTERATIVOS COM AUTO-PLAY E ARRASTE (DOBRAS 1 E 4) ───────────── */
+  function setupInteractiveMarquee(wrapSelector, trackSelector, cardSelector, baseSpeed = 0.85) {
+    const wrap = document.querySelector(wrapSelector);
+    const track = wrap ? wrap.querySelector(trackSelector) : null;
+    if (!wrap || !track) return;
+
+    const originalCards = Array.from(track.querySelectorAll(cardSelector));
+    if (originalCards.length < 6) return;
+
+    // Clona o Set 1 para criar o Set 3, garantindo buffer contínuo em ambas as direções
+    const setSize = originalCards.length / 2; // 6 cards
+    for (let i = 0; i < setSize; i++) {
+      const clone = originalCards[i].cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      clone.setAttribute('tabindex', '-1');
+      track.appendChild(clone);
+    }
+
+    let setWidth = 0;
+    function updateSetWidth() {
+      const cardSet2 = track.children[setSize];
+      if (cardSet2) {
+        setWidth = cardSet2.offsetLeft;
+      }
+    }
+
+    const setInitialPos = () => {
+      updateSetWidth();
+      if (setWidth > 0 && (wrap.scrollLeft === 0 || wrap.scrollLeft < 10)) {
+        wrap.scrollLeft = setWidth;
+      }
+    };
+    setInitialPos();
+    window.addEventListener('load', setInitialPos);
+    window.addEventListener('resize', updateSetWidth);
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(setInitialPos);
+    }
+
+    let isInteracting = false;
+    let resumeTimer = null;
+    let hasDragged = false;
+
+    function pauseAuto() {
+      isInteracting = true;
+      if (resumeTimer) {
+        clearTimeout(resumeTimer);
+        resumeTimer = null;
+      }
+    }
+
+    function resumeAuto(delay = 1400) {
+      if (resumeTimer) clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(() => {
+        isInteracting = false;
+      }, delay);
+    }
+
+    function handleWrap() {
+      if (setWidth <= 0) updateSetWidth();
+      if (setWidth <= 0) return;
+
+      if (wrap.scrollLeft >= setWidth * 2) {
+        wrap.scrollLeft -= setWidth;
+      } else if (wrap.scrollLeft <= 5) {
+        wrap.scrollLeft += setWidth;
+      }
+    }
+
+    wrap.addEventListener('scroll', handleWrap, { passive: true });
+    wrap.addEventListener('wheel', () => {
+      pauseAuto();
+      resumeAuto(1400);
+    }, { passive: true });
+
+    // Touch handling (Mobile)
+    let touchStartX = 0;
+    wrap.addEventListener('touchstart', e => {
+      if (e.touches && e.touches[0]) {
+        touchStartX = e.touches[0].pageX;
+      }
+      pauseAuto();
+    }, { passive: true });
+
+    wrap.addEventListener('touchmove', e => {
+      if (e.touches && e.touches[0] && Math.abs(e.touches[0].pageX - touchStartX) > 6) {
+        hasDragged = true;
+      }
+      pauseAuto();
+    }, { passive: true });
+
+    wrap.addEventListener('touchend', () => {
+      resumeAuto(1400);
+      setTimeout(() => { hasDragged = false; }, 120);
+    }, { passive: true });
+
+    wrap.addEventListener('touchcancel', () => {
+      resumeAuto(1000);
+      setTimeout(() => { hasDragged = false; }, 120);
+    }, { passive: true });
+
+    // Mouse drag handling (Desktop)
+    let isMouseDown = false;
+    let startX = 0;
+    let startScrollLeft = 0;
+
+    wrap.addEventListener('mousedown', e => {
+      if (e.button !== 0) return;
+      isMouseDown = true;
+      hasDragged = false;
+      startX = e.pageX;
+      startScrollLeft = wrap.scrollLeft;
+      pauseAuto();
+      wrap.classList.add('is-dragging');
+    });
+
+    window.addEventListener('mousemove', e => {
+      if (!isMouseDown) return;
+      const dx = e.pageX - startX;
+      if (Math.abs(dx) > 4) {
+        hasDragged = true;
+      }
+      wrap.scrollLeft = startScrollLeft - dx;
+      handleWrap();
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (!isMouseDown) return;
+      isMouseDown = false;
+      wrap.classList.remove('is-dragging');
+      resumeAuto(1500);
+      setTimeout(() => { hasDragged = false; }, 80);
+    });
+
+    // Hover pause em Desktop (apenas mouse)
+    wrap.addEventListener('pointerenter', e => {
+      if (e.pointerType === 'mouse') pauseAuto();
+    });
+    wrap.addEventListener('pointerleave', e => {
+      if (e.pointerType === 'mouse' && !isMouseDown) resumeAuto(600);
+    });
+
+    // Previne clique acidental durante arraste
+    track.addEventListener('click', e => {
+      if (hasDragged) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+
+    // Auto-scroll contínuo e suave a 60fps
+    function tick() {
+      if (!isInteracting && wrap.offsetParent !== null) {
+        const speed = window.innerWidth <= 768 ? baseSpeed * 0.75 : baseSpeed;
+        wrap.scrollLeft += speed;
+        handleWrap();
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // Inicializa carrossel da Dobra 1 e Dobra 4
+  setupInteractiveMarquee('.marquee-wrap', '.marquee-track', '.c-card', 0.85);
+  setupInteractiveMarquee('.fold4__marquee-wrap', '.fold4__track', '.p-card', 0.95);
+
   /* ───────────── NOVO: DECK DE DESEMPENHO (PASSAR FOLHA PRA CIMA EM LOOPING) ───────────── */
   const sheetDeck = document.getElementById('sheetDeck');
   if (sheetDeck) {

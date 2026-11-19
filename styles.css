@@ -265,26 +265,33 @@ img { display: block; max-width: 100%; }
 
 .marquee-wrap {
   width: 100%;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
   padding: 8px 0 12px;
   mask-image: linear-gradient(90deg, transparent 0%, #000 3%, #000 97%, transparent 100%);
   -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 3%, #000 97%, transparent 100%);
+  cursor: grab;
+  touch-action: pan-x pan-y;
+}
+.marquee-wrap::-webkit-scrollbar {
+  display: none;
+}
+.marquee-wrap.is-dragging {
+  cursor: grabbing;
+}
+.marquee-wrap.is-dragging * {
+  cursor: grabbing;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .marquee-track {
   display: flex;
   gap: 16px;
   width: max-content;
-  animation: marqueeLoop 36s linear infinite;
-  will-change: transform;
-}
-.marquee-wrap:hover .marquee-track {
-  animation-play-state: paused;
-}
-
-@keyframes marqueeLoop {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(calc(-50% - 8px)); }
 }
 
 .c-card {
@@ -319,6 +326,7 @@ img { display: block; max-width: 100%; }
   object-fit: cover;
   user-select: none;
   -webkit-user-drag: none;
+  pointer-events: none;
 }
 
 /* quadradinho delicado abaixo da imagem */
@@ -1205,25 +1213,33 @@ img { display: block; max-width: 100%; }
 /* Carrossel de projetos passando em looping acima do astronauta */
 .fold4__marquee-wrap {
   width: 100%;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
   padding: 14px 0 20px;
   mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
   -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  cursor: grab;
+  touch-action: pan-x pan-y;
 }
+.fold4__marquee-wrap::-webkit-scrollbar {
+  display: none;
+}
+.fold4__marquee-wrap.is-dragging {
+  cursor: grabbing;
+}
+.fold4__marquee-wrap.is-dragging * {
+  cursor: grabbing;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
 .fold4__track {
   display: flex;
   gap: 22px;
   width: max-content;
-  animation: marqueeProjects 48s linear infinite;
-  will-change: transform;
-}
-.fold4__marquee-wrap:hover .fold4__track {
-  animation-play-state: paused;
-}
-
-@keyframes marqueeProjects {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(calc(-50% - 11px)); }
 }
 
 .p-card {
@@ -1258,6 +1274,7 @@ img { display: block; max-width: 100%; }
   object-position: top center;
   user-select: none;
   -webkit-user-drag: none;
+  pointer-events: none;
   display: block;
 }
 
@@ -1693,10 +1710,6 @@ img { display: block; max-width: 100%; }
   }
   .marquee-wrap { padding: 3px 0 5px; }
   .marquee-track { gap: 8px; }
-  @keyframes marqueeLoop {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(calc(-50% - 4px)); }
-  }
   .c-card { width: 108px; gap: 4px; }
   .c-card__frame { height: 126px; }
   .c-box { padding: 4px 6px; gap: 1px; }
