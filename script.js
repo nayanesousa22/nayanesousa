@@ -251,8 +251,8 @@
 
     applyPositions();
 
-    // Rotação contínua e automática em looping
-    setInterval(flipNext, 3600);
+    // Rotação contínua e automática em looping (2 segundos)
+    setInterval(flipNext, 2000);
 
     if (nextBtn) nextBtn.addEventListener('click', flipNext);
     if (stage) stage.addEventListener('click', flipNext);
