@@ -171,7 +171,7 @@ img { display: block; max-width: 100%; }
   animation: glowPulse 7s ease-in-out infinite;
 }
 .glow--tr { width: 46vw; height: 46vw; top: -26vw; right: -20vw;
-  background: radial-gradient(circle, rgba(255,190,11,0.34), rgba(255,190,11,0) 66%); }
+  background: radial-gradient(circle, rgba(255,190,11,0.12), rgba(255,190,11,0) 66%); }
 .glow--bl { width: 50vw; height: 50vw; bottom: -30vw; left: -22vw;
   background: radial-gradient(circle, rgba(255,190,11,0.28), rgba(255,190,11,0) 66%); animation-delay: -3s; }
 .glow--tl { width: 26vw; height: 26vw; top: -15vw; left: -10vw;
@@ -267,15 +267,15 @@ img { display: block; max-width: 100%; }
   width: 100%;
   overflow: hidden;
   padding: 8px 0 12px;
-  mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 3%, #000 97%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 3%, #000 97%, transparent 100%);
 }
 
 .marquee-track {
   display: flex;
   gap: 16px;
   width: max-content;
-  animation: marqueeLoop 24s linear infinite;
+  animation: marqueeLoop 36s linear infinite;
   will-change: transform;
 }
 .marquee-wrap:hover .marquee-track {
@@ -881,7 +881,7 @@ img { display: block; max-width: 100%; }
   display: flex;
   gap: 22px;
   width: max-content;
-  animation: marqueeProjects 34s linear infinite;
+  animation: marqueeProjects 48s linear infinite;
   will-change: transform;
 }
 .fold4__marquee-wrap:hover .fold4__track {
