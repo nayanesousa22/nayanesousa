@@ -202,7 +202,7 @@
     window.addEventListener('touchstart', playFold4, { passive: true, once: true });
   }
 
-  /* ───────────── NOVO: DECK DE DESEMPENHO (PASSAR FOLHA PRA CIMA) ───────────── */
+  /* ───────────── NOVO: DECK DE DESEMPENHO (PASSAR FOLHA PRA CIMA EM LOOPING) ───────────── */
   const sheetDeck = document.getElementById('sheetDeck');
   if (sheetDeck) {
     const cards = Array.from(sheetDeck.querySelectorAll('.sheet-card'));
@@ -211,7 +211,6 @@
     const stage = document.getElementById('sheetStage');
     let current = 0;
     let isFlipping = false;
-    let autoTimer = null;
 
     function applyPositions() {
       cards.forEach((card, i) => {
@@ -252,6 +251,9 @@
 
     applyPositions();
 
+    // Rotação contínua e automática em looping
+    setInterval(flipNext, 3600);
+
     if (nextBtn) nextBtn.addEventListener('click', flipNext);
     if (stage) stage.addEventListener('click', flipNext);
 
@@ -272,17 +274,6 @@
         if (diff > 35) flipNext();
       }, { passive: true });
     }
-
-    const startAuto = () => {
-      if (!autoTimer) autoTimer = setInterval(flipNext, 4600);
-    };
-    const stopAuto = () => {
-      if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
-    };
-    startAuto();
-    sheetDeck.addEventListener('mouseenter', stopAuto);
-    sheetDeck.addEventListener('mouseleave', startAuto);
-    sheetDeck.addEventListener('touchstart', stopAuto, { passive: true });
   }
 
   /* ───────────── 4) REVELAÇÕES DA PÁGINA ───────────── */

@@ -349,17 +349,9 @@
           </div>
         </div>
 
-        <!-- Coluna da Direita: Deck de Folhas com Efeito de Passar a Folha pra Cima -->
+        <!-- Coluna da Direita: Deck de Folhas com Efeito de Passar a Folha pra Cima em Looping -->
         <div class="speed__visual reveal">
           <div class="sheet-deck" id="sheetDeck" aria-label="Relatórios de desempenho e saúde do site">
-            <div class="sheet-deck__header">
-              <span class="sheet-deck__tag">
-                <span class="sheet-deck__dot" aria-hidden="true"></span>
-                <span>Relatórios Reais de Performance</span>
-              </span>
-              <span class="sheet-deck__hint">Toque na folha para passar ↑</span>
-            </div>
-
             <div class="sheet-deck__stage" id="sheetStage">
               <div class="sheet-card" data-sheet="0">
                 <img src="assets/performance/relatorio-desempenho-1.jpg" alt="Relatório de desempenho e saúde do site — Pontuação geral 92%" width="1024" height="576" loading="lazy">
@@ -378,10 +370,6 @@
                 <button type="button" class="sheet-dot" data-idx="1" aria-label="Relatório 2"></button>
                 <button type="button" class="sheet-dot" data-idx="2" aria-label="Relatório 3"></button>
               </div>
-              <button type="button" class="sheet-btn" id="sheetNextBtn" aria-label="Próximo relatório">
-                <span>Passar folha</span>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-              </button>
             </div>
           </div>
         </div>
@@ -458,7 +446,7 @@
       <!-- Título da dobra 4 -->
       <div class="fold4__header reveal">
         <h2 class="fold4__title">
-          Projetos que já estão no ar
+          Projetos que já estão <br class="mob-br"><span class="u-nowrap">no ar</span>
         </h2>
       </div>
 

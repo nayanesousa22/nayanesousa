@@ -815,8 +815,8 @@ img { display: block; max-width: 100%; }
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  margin-bottom: 42px;
-  cursor: pointer;
+  margin-bottom: 24px;
+  cursor: default;
 }
 
 .sheet-card {
@@ -827,7 +827,7 @@ img { display: block; max-width: 100%; }
   border-radius: var(--radius-sm);
   overflow: hidden;
   background: #0d0d0d;
-  cursor: pointer;
+  cursor: default;
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
               opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
               filter 0.5s cubic-bezier(0.22, 1, 0.36, 1),
@@ -901,7 +901,7 @@ img { display: block; max-width: 100%; }
 .sheet-deck__controls {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 0 4px;
 }
 
@@ -1644,10 +1644,10 @@ img { display: block; max-width: 100%; }
   .hero-title--mob { display: inline; }
 
   .live-status {
-    top: 26px;
+    top: 42px;
     left: 50%;
     transform: translateX(-50%);
-    padding: 5px 12px 5px 9px;
+    padding: 6px 13px 6px 10px;
   }
   .live-status__text { font-size: 10px; }
 
@@ -1657,9 +1657,9 @@ img { display: block; max-width: 100%; }
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 72px var(--gutter) 46px;
+    padding: 96px var(--gutter) 42px;
     height: 100%;
-    gap: 10px;
+    gap: 12px;
   }
   .hero-copy {
     max-width: 100%;
@@ -1686,7 +1686,7 @@ img { display: block; max-width: 100%; }
     padding-top: 8px;
   }
   .showcase {
-    width: min(86vw, 290px);
+    width: min(92vw, 342px);
     margin: 0 auto;
     justify-self: center;
     gap: 6px;
@@ -1798,7 +1798,7 @@ img { display: block; max-width: 100%; }
     max-width: 100%;
   }
   .sheet-deck__stage {
-    margin-bottom: 34px;
+    margin-bottom: 22px;
   }
 
   /* Dobra 3 Mobile — mais respiro nas bordas */
